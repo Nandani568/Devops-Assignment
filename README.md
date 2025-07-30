@@ -20,13 +20,13 @@ For simplicity, use a cloud provider like AWS (EKS), GCP (GKE), or Minikube
 
 a. Deploy NGINX Ingress
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 
 Wait for the ingress controller to be ready:
 
-kubectl get pods -n ingress-nginx
+    kubectl get pods -n ingress-nginx
 
-kubectl get svc -n ingress-nginx
+    kubectl get svc -n ingress-nginx
 
 ✅ 3. Sample App + Ingress Setup
 
@@ -44,44 +44,44 @@ To access locally: echo "127.0.0.1 sample.local" | tee -a /etc/hosts
 Add strategy to your Deployment:
 
 
-strategy:
+    strategy:
 
-  type: RollingUpdate
+      type: RollingUpdate  
   
-  rollingUpdate:
+      rollingUpdate:
   
-    maxUnavailable: 0
+        maxUnavailable: 0
     
-    maxSurge: 1
+        maxSurge: 1
 
 
 ✅ 6. Screenshots or output of:
 
 ![alt text](kube-playground-online.png)
 
-kubectl get pods -o wide
+    kubectl get pods -o wide
 
-kubectl get nodes
+    kubectl get nodes
 
-kubectl get svc
+    kubectl get svc
 
-kubectl get ingress
+    kubectl get ingress
 
 ![alt text](result.png)
 
 ✅ 6. Bonus
 Use Helm to install NGINX and the sample app:
 
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install nginx ingress-nginx/ingress-nginx
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+    helm install nginx ingress-nginx/ingress-nginx
 
  
 Deploy a redis Database
 
- .
-├── manifests/
-│   ├── sample-app-deployment.yaml
-│   ├── sample-app-service.yaml
-│   ├── sample-app-ingress.yaml
-│   └── redis-statefulset.yaml 
-└── README.md
+     .
+    ├── manifests/
+    │   ├── sample-app-deployment.yaml
+    │   ├── sample-app-service.yaml
+    │   ├── sample-app-ingress.yaml
+    │   └── redis-statefulset.yaml 
+    └── README.md
