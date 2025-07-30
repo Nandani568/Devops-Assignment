@@ -1,7 +1,9 @@
 # Devops-Assignment
 
 ✅ 1. Cluster Setup (High Availability & Scalability)
+
 a. Provision Kubernetes Cluster
+
 Tool Choice: kubeadm for production-grade, or kind for local testing.
 
 For HA setup with kubeadm:
@@ -23,32 +25,50 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 Wait for the ingress controller to be ready:
 
 kubectl get pods -n ingress-nginx
+
 kubectl get svc -n ingress-nginx
 
 ✅ 3. Sample App + Ingress Setup
+
 a. Deploy Sample App 
+
 sample-app-deployment.yaml
+
 sample-app-service.yaml
+
 sample-app-ingress.yaml
 
-To access locally: echo "127.0.0.1 sample.local" | sudo tee -a /etc/hosts
+To access locally: echo "127.0.0.1 sample.local" | tee -a /etc/hosts
 
 ✅ 4. Zero-Downtime Rolling Updates
 Add strategy to your Deployment:
 
+
 strategy:
+
   type: RollingUpdate
+  
   rollingUpdate:
+  
     maxUnavailable: 0
+    
     maxSurge: 1
 
-Screenshots or output of:
+
+✅ 6. Screenshots or output of:
+
 ![alt text](kube-playground-online.png)
+
 kubectl get pods -o wide
+
 kubectl get nodes
+
 kubectl get svc
+
 kubectl get ingress
+
 ![alt text](result.png)
+
 ✅ 6. Bonus
 Use Helm to install NGINX and the sample app:
 
